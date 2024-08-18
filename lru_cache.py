@@ -16,11 +16,11 @@ class LRUCache:
 
     def __getitem__(self, key):
         if key not in self.cache:
-            return CacheReturnState.MISS.value
+            return None, CacheReturnState.MISS.value
         
         self.cache.move_to_end(key)
 
-        return self.cache[key]
+        return self.cache[key], CacheReturnState.HIT.value
     
     def __setitem__(self, key, value):
         self.cache[key] = value
